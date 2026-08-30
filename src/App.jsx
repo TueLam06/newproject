@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "./components/Header";
 import ProductCard from "./components/ProductCard.jsx"
 import "./App.css";
+import Cart from "./components/Cart.jsx";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -45,12 +46,14 @@ function App() {
                 cart.map((item) => {
                         if(item.id === product.id) {
                             return {...item, quantity: item.quantity - 1}
+                        } else {
+                            return item;
                         }
                     }
                 )
             )
         } else if (existingProduct && existingProduct.quantity === 1) {
-            return handleRemoveFromCart(existingProduct.id)
+            return handleRemoveFromCart(existingProduct)
         }
     }
 
@@ -66,15 +69,13 @@ function App() {
         <Header title = "My website"/>
 
         <main>
-            <div className="cart">
-                <h2> Your cart: {cart.length} products - {total}$</h2>
-                {cart.map((item) => (
-                    <p key={item.id}>
-                        {item.name} - {item.price}$ - Quantity: {item.quantity}
-                    </p>
-
-            ))}</div>
-
+            <Cart
+                cart={cart}
+                total={total}
+                onIncrease={handleIncrease}
+                onDecrease={handleDecrease}
+                onRemove={handleRemoveFromCart}
+            />
           <div className="products">
             {product.map((p) => (
                 <ProductCard
