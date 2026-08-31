@@ -1,19 +1,24 @@
 import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import ProductCard from "./components/ProductCard.jsx"
-import "./App.css";
 import Cart from "./components/Cart.jsx";
+
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
+import CartPage from "./pages/CartPage";
+
+import "./App.css";
+import products from "./data/products";
 
 function App() {
   const [cart, setCart] = useState([]);
   const total = cart.reduce((total, item) => {
       return total + item.price*item.quantity
   },0);
-  const product = [
-    { id: 1, name: "Laptop", price: 2000 },
-    { id: 2, name: "Keyboard", price: 150 },
-    { id: 3, name: "Mouse", price: 50 },
-  ]
+
     function handleAddToCart(product){
         const existingProduct = cart.find((item) => item.id === product.id);
         if(!existingProduct) setCart([...cart, {...product, quantity: 1}])
@@ -65,32 +70,18 @@ function App() {
       )
     }
   return (
-      <>
-        <Header title = "My website"/>
+      <BrowserRouter>
+          <Header title="My website" />
 
-        <main>
-            <Cart
-                cart={cart}
-                total={total}
-                onIncrease={handleIncrease}
-                onDecrease={handleDecrease}
-                onRemove={handleRemoveFromCart}
-            />
-          <div className="products">
-            {product.map((p) => (
-                <ProductCard
-                    key = {p.id}
-                    product = {p}
-                    onAddToCart={handleAddToCart}
-                    onIncrease={handleIncrease}
-                    onDecrease={handleDecrease}
-                    onRemoveFromCart={handleRemoveFromCart}
-                />
-                ))}
-          </div>
-        </main>
-      </>
+          <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/cart" element={<CartPage />} />
+          </Routes>
+      </BrowserRouter>
+
   );
 }
 
-export default App;
+export default Home;
