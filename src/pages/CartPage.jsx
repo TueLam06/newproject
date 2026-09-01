@@ -1,9 +1,15 @@
-function CartPage() {
+import Cart from "../components/Cart";
+
+function CartPage({cart, total, onIncrease, onDecrease, onRemove}) {
     return (
-        <div>
-            <h2>Cart Page</h2>
-        </div>
-    );
+        <Cart
+        cart={cart}
+        total={total}
+        onIncrease={onIncrease}
+        onDecrease={onDecrease}
+        onRemove={onRemove}
+    />
+    )
 }
 
 export default CartPage;

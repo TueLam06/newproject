@@ -69,18 +69,39 @@ function App() {
           })
       )
     }
+    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   return (
       <BrowserRouter>
-          <Header title="My website" />
-
+          <Header title="My website" cartCount={cartCount} />
           <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/"
+                     element={
+                  <Home
+                      onAddToCart={handleAddToCart}
+                  />
+              }
+              />
               <Route path="/products" element={<Products />} />
-              <Route path="/products/:id" element={<ProductDetail />} />
-              <Route path="/cart" element={<CartPage />} />
+              <Route path="/products/:id"
+                     element={
+                        <ProductDetail
+                            onAddToCart={handleAddToCart}
+                        />
+                    }
+              />
+              <Route path="/cart"
+                     element={
+                      <CartPage
+                          cart={cart}
+                          total={total}
+                          onIncrease={handleIncrease}
+                          onRemove={handleRemoveFromCart}
+                          onDecrease={handleDecrease}
+                      />
+                  }
+              />
           </Routes>
       </BrowserRouter>
-
   );
 }
 

@@ -1,3 +1,4 @@
+
 function Cart ({cart, total, onIncrease, onDecrease, onRemove}){
     return (
         <div className="cart">
