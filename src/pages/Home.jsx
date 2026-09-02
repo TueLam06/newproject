@@ -1,16 +1,19 @@
 import ProductCard from "../components/ProductCard";
 import products from "../data/products";
 
-function Home({onAddToCart}) {
+function Home() {
+    const featuredProducts = products.filter((item) => item.feature)
     return (
-        <div className="products">
-            {products.map((p) => (
-                <ProductCard
-                    key={p.id}
-                    product={p}
-                    onAddToCart={onAddToCart}
-                />
-            ))}
+        <div>
+            <h2>Highlight Products</h2>
+            <div className={"products"}>
+                {featuredProducts.map((p) => (
+                    <ProductCard
+                        key={p.id}
+                        product={p}
+                    />
+                ))}
+            </div>
         </div>
     );
 }

@@ -1,25 +1,16 @@
-
+import { Link } from "react-router-dom";
 function Cart ({cart, total, onIncrease, onDecrease, onRemove}){
     return (
         <div className="cart">
-            <h2>
-                Your cart: {cart.length} products - {total}$
-            </h2>
+            <h2>Your cart: {cart.length} products - {total}$</h2>
+
+            <h2>{cart.length > 0 ? (<Link to="/checkout">Check Out</Link>) : null}</h2>
             {cart.map((item) => (
                 <p key={item.id}>
                     {item.name} - {item.price}$ x {item.quantity}
-
-                    <button onClick={() => onDecrease(item)}>
-                        [-]
-                    </button>
-
-                    <button onClick={() => onRemove(item)}>
-                        [Remove from card]
-                    </button>
-
-                    <button onClick={() => onIncrease(item)}>
-                        [+]
-                    </button>
+                    <button onClick={() => onDecrease(item)}>[-]</button>
+                    <button onClick={() => onRemove(item)}>[Remove from card]</button>
+                    <button onClick={() => onIncrease(item)}>[+]</button>
                 </p>
             ))}
 

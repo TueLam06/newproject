@@ -6,7 +6,8 @@ const products = [
         image: "...",
         description: "A powerful laptop for everyday work.",
         category: "Laptop",
-        stock: 10
+        stock: 10,
+        feature: true,
     },
     {
         id: 2,
@@ -15,7 +16,9 @@ const products = [
         image: "...",
         description: "A powerful keyboard for everyday work.",
         category: "Keyboard",
-        stock: 20
+        stock: 20,
+        feature: true,
+
     },
     {
         id: 3,
@@ -24,7 +27,9 @@ const products = [
         image: "...",
         description: "A powerful mouse for everyday work.",
         category: "Mouse",
-        stock: 30
+        stock: 30,
+        feature: false,
+
     }
 ];
 

@@ -1,14 +1,17 @@
+import { Link } from "react-router-dom"
+import { useCart } from "../context/CartContext";
 import "./Header.css"
-import {Link} from "react-router-dom"
-function Header(props) {
+
+function Header({title}) {
+    const  { cartCount } = useCart();
     return (
         <nav>
-            <h1>{props.title}</h1>
+            <h1>{title}</h1>
 
             <div>
                 <Link to="/">Home</Link>
                 <Link to="/products"> Products </Link>
-                <Link to="/cart"> Cart {props.cartCount ? `(${props.cartCount})` : ""}</Link>
+                <Link to="/cart"> Cart {cartCount > 0 ? `(${cartCount})` : ""}</Link>
             </div>
         </nav>
     )

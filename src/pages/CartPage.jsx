@@ -1,14 +1,17 @@
 import Cart from "../components/Cart";
+import { useCart } from "../context/CartContext";
 
-function CartPage({cart, total, onIncrease, onDecrease, onRemove}) {
+function CartPage() {
+    const {cart, total, increaseQuantity, decreaseQuantity, removeFromCart} = useCart()
     return (
         <Cart
-        cart={cart}
-        total={total}
-        onIncrease={onIncrease}
-        onDecrease={onDecrease}
-        onRemove={onRemove}
-    />
+            cart={cart}
+            total={total}
+            onIncrease={increaseQuantity}
+            onDecrease={decreaseQuantity}
+            onRemove={removeFromCart}
+
+        />
     )
 }
 
