@@ -64,6 +64,10 @@ export function CartProvider({ children }) {
         )
     }
 
+    function clearCart(){
+        setCart([])
+    }
+
     const value = {
         cart,
         total,
@@ -72,6 +76,7 @@ export function CartProvider({ children }) {
         increaseQuantity,
         decreaseQuantity,
         removeFromCart,
+        clearCart,
     };
 
     return (
